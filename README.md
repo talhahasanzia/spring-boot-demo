@@ -9,6 +9,7 @@ This is a Spring Boot application written in Kotlin, using Gradle Kotlin DSL for
 - **MySQL Database**: Used as the relational database.
 - **Token-Based Authentication**: Ensures secure access to APIs using JWT (JSON Web Tokens).
 - **Authentication and Authorization**: Includes user authentication and role-based access control.
+- **API Documentation with Swagger**: Provides an interactive interface to explore and test API endpoints.
 
 ## Project Structure
 - **`src/main/kotlin`**: Contains the Kotlin source code.
@@ -61,6 +62,11 @@ This is a Spring Boot application written in Kotlin, using Gradle Kotlin DSL for
 5. **Access the Application**:
     - The application will be available at `http://localhost:8080`.
 
+## API Documentation
+- The API documentation is available via Swagger UI. You can access it at the following URL:
+  [Swagger UI](http://localhost:8080/swagger-ui.html)
+- Swagger provides an interactive interface to explore and test the API endpoints.
+
 ## Authentication
 - The application uses JWT for token-based authentication.
 - After logging in, a token will be provided, which must be included in the `Authorization` header for subsequent API requests:
@@ -99,16 +105,13 @@ The application implements token-based authentication and security using the fol
       http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java)
       ```
 
-## API Documentation
-- API endpoints and usage details can be tested using Postman or Swagger (if integrated).
-
 ## Technologies Used
 - **Spring Boot**
 - **Kotlin**
 - **Gradle Kotlin DSL**
 - **MySQL**
 - **JWT (JSON Web Token)** for authentication
+- **Swagger/OpenAPI** for API documentation
 
 ## License
 This project is licensed under the MIT License.
-
