@@ -25,6 +25,8 @@ class SecurityConfig(
             .authorizeHttpRequests {
                 it.requestMatchers(
                     "/swagger-ui.html", // Explicitly allow access to Swagger UI
+                    "/swagger-ui/**", // Allow access to Swagger UI resources
+                    "/v3/api-docs", // Explicitly allow access to OpenAPI JSON docs
                     "/v3/api-docs.yaml", // Explicitly allow access to OpenAPI YAML docs
                     "/auth/**" // Allow access to authentication endpoints
                 ).permitAll()
