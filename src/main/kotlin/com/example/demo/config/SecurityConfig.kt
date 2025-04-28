@@ -23,13 +23,18 @@ class SecurityConfig(
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http.csrf { it.disable() }
             .authorizeHttpRequests {
-                it.requestMatchers("/auth/**").permitAll()
-                    .anyRequest().authenticated()
+                it.requestMatchers(
+                    "/swagger-ui.html", // Explicitly allow access to Swagger UI
+                    "/v3/api-docs.yaml", // Explicitly allow access to OpenAPI YAML docs
+                    "/auth/**" // Allow access to authentication endpoints
+                ).permitAll()
+                .anyRequest().authenticated()
             }
             .sessionManagement {
                 it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             }
 
+        // Add the JWT filter before the UsernamePasswordAuthenticationFilter
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java)
 
         return http.build()
