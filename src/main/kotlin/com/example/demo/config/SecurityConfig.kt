@@ -24,12 +24,8 @@ class SecurityConfig(
         http.csrf { it.disable() }
             .authorizeHttpRequests {
                 it.requestMatchers(
-                    // Remove Swagger-specific endpoints
-                    // "/swagger-ui/index.html",
-                    // "/swagger-ui.html",
-                    // "/swagger-ui/**",
-                    // "/v3/api-docs",
-                    // "/v3/api-docs.yaml",
+                    "/swagger-ui/**",
+                    "/v3/api-docs/**",
                     "/auth/**"
                 ).permitAll()
                 .anyRequest().authenticated()

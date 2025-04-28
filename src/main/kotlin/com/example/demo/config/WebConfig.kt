@@ -11,13 +11,9 @@ class WebConfig {
     fun corsConfigurer(): WebMvcConfigurer {
         return object : WebMvcConfigurer {
             override fun addCorsMappings(registry: CorsRegistry) {
-                // Remove Swagger-specific CORS mappings
-                // registry.addMapping("/v3/api-docs")
-                //     .allowedOrigins("http://localhost:8080")
-                //     .allowedMethods("GET", "OPTIONS")
-                // registry.addMapping("/swagger-ui/**")
-                //     .allowedOrigins("http://localhost:8080")
-                //     .allowedMethods("GET", "OPTIONS")
+                registry.addMapping("/**")
+                    .allowedOrigins("http://localhost:8080")
+                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
             }
         }
     }
