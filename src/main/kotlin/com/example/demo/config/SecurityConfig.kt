@@ -24,11 +24,13 @@ class SecurityConfig(
         http.csrf { it.disable() }
             .authorizeHttpRequests {
                 it.requestMatchers(
-                    "/swagger-ui.html", // Explicitly allow access to Swagger UI
-                    "/swagger-ui/**", // Allow access to Swagger UI resources
-                    "/v3/api-docs", // Explicitly allow access to OpenAPI JSON docs
-                    "/v3/api-docs.yaml", // Explicitly allow access to OpenAPI YAML docs
-                    "/auth/**" // Allow access to authentication endpoints
+                    // Remove Swagger-specific endpoints
+                    // "/swagger-ui/index.html",
+                    // "/swagger-ui.html",
+                    // "/swagger-ui/**",
+                    // "/v3/api-docs",
+                    // "/v3/api-docs.yaml",
+                    "/auth/**"
                 ).permitAll()
                 .anyRequest().authenticated()
             }
@@ -36,7 +38,6 @@ class SecurityConfig(
                 it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             }
 
-        // Add the JWT filter before the UsernamePasswordAuthenticationFilter
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java)
 
         return http.build()
